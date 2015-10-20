@@ -5,9 +5,7 @@
 #include <SFGUI/Widgets.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
-#include <vector>
 #include <SFML/Audio.hpp>
-#include <iostream>
 #include <thread>
 #include "icons.hpp"
 

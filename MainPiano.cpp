@@ -1,3 +1,9 @@
+/** Brownian Motion 2015
+ * \date 201015
+ * \file MainPIano.cpp
+ * \brief main function only
+*/
+
 #include "pianola.hpp"
 
 int main()

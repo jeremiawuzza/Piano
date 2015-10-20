@@ -1,11 +1,13 @@
 /** Brownian Motion 2015
  * \date :180915
+ put on gitHub 191015
  * \file :pianola.cpp
 
- * \brief :pianola - a little piano -
- all the sound files to play this are in data/
- trying to manipulate sounds with delays and threads
- from: AlexanderX.net/Tutorials/Create a simple piano/main.cpp
+ * \brief :pianola - a little piano - manipulating sounds with delays and threads
+ based on AlexanderX.net/Tutorials/Create a simple piano/main.cpp
+ all the sound files to play this are in the data/ directory
+
+
  openal32.dll is needed in the code folder
 */
 
@@ -30,7 +32,7 @@ string noteName (string& str)
     return mid; }
 
 int thisTone(sf::SoundBuffer& buff)     /// called by thread in pE
-{   sf::Sound note;
+{   sf::Sound note;                     /// NOT in pianlola class
     note.setBuffer(buff);
     note.setPitch(pitch);
     note.play();
@@ -87,29 +89,22 @@ void Pianola::Widgets()
 
     auto divV = sfg::Separator::Create( sfg::Separator::Orientation::VERTICAL );
     auto divH = sfg::Separator::Create( sfg::Separator::Orientation::HORIZONTAL );
-   // titleLabel = sfg::Label::Create("Pianola 17");
-
     pianoFrame = sfg::Frame::Create();
     pianoFrame->SetRequisition(pianoSize);
     menuFrame = sfg::Frame::Create();
 
     textCanvas = sfg::Canvas::Create();
-   //  textCanvas->SetRequisition( sf::Vector2f(text.getLocalBounds().width, text.getLocalBounds().height) );
 
-     textWindow = sfg::Window::Create();
+    textWindow = sfg::Window::Create();
     textWindow->SetStyle(0);
     textWindow->Add(textCanvas);
     menuFrame->Add(textWindow);
 
-
     pitchButton = sfg::Button::Create("X1");
-    //pitchButton->SetAllocation({0, 0, 0, 60 });
     pitchButton->GetSignal( sfg::Widget::OnLeftClick ).Connect( std::bind( &Pianola::octave, this));
 
     auto controlBox = sfg::Box::Create(sfg::Box::Orientation::VERTICAL, padding);
-    //controlBox->Pack(titleLabel, false);
     controlBox->Pack(menuFrame);
-    //controlBox->Pack(divH, false);
     controlBox->Pack(sliderTitle, false);
     controlBox->Pack(slider, false);
     controlBox->Pack(pitchButton, false);
@@ -188,10 +183,10 @@ void Pianola::processEvents()
             {   for (int j = 0 ; j < allKeys; ++j )
                 {   if (keyArray[j].keycolor == white) keyArray[j].keyShape.setFillColor(sf::Color::White);
                     if (keyArray[j].keycolor == black) keyArray[j].keyShape.setFillColor(sf::Color::Black); }
-                //noteLabel->SetText("");
+
             }
             default: break; }             /// end of switch
-    } }             /// end pE function and while poll event - return to caller (render function)
+    } }   /// end pE function and while poll event - return to caller (render function)
 
 } ///end of namespace
 
